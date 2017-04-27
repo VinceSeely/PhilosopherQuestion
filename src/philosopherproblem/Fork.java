@@ -10,20 +10,26 @@ package philosopherproblem;
  * @author vince
  */
 public class Fork {
-    private Philosopher curPhilos = null;
+   private int sema = 1;
+  
+   public void replaceFork()
+   {
+      ++sema;
+   }
     
-    public boolean forkInUse()
-    {
-        return curPhilos != null;
-    }
-    
-    public void replaceFork()
-    {
-        curPhilos = null;
-    }
-    
-    public void grabFork (Philosopher using)
-    {
-        curPhilos = using;
-    }
+   @SuppressWarnings("empty-statement")
+   public boolean grabFork (Philosopher using) throws InterruptedException
+   {
+      int timesRun = 0;      
+      while (sema <= 0 && timesRun <= 300)
+      {
+        Thread.sleep(10);
+        ++timesRun;
+      }
+      if (timesRun == 300)
+         return false;
+      else
+         --sema;
+      return true;
+   }
 }
