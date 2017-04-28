@@ -18,6 +18,11 @@ public class Philosopher extends Thread
    private int thinkTime = 0;
    private int ID;
    private static final int RUNTIME = 60; //in seconds
+
+   Philosopher(Fork left, Fork right) {
+      leftFork = left;
+      rightFork = right;
+   }
    @Override
    public void run()
    {

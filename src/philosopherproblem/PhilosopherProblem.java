@@ -34,7 +34,8 @@ public class PhilosopherProblem {
       for (int i = 0; i < totalPhilosophers; i++)
       {
          //TODO: give them their forks
-         myPhilosophers[i] = new Philosopher();
+         myPhilosophers[i] = new Philosopher(philosFork[i], 
+            philosFork[(i+1) % totalPhilosophers]);
          myPhilosophers[i].start();
       }
       for(int i = 0; i < totalPhilosophers; i++)
