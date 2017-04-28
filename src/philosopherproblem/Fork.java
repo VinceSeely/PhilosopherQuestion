@@ -11,6 +11,8 @@ package philosopherproblem;
  */
 public class Fork {
    private int sema = 1;
+   private static final int MAX_TRIES = 300;
+   private static final int SLEEP_TIME = 10; //in milliseconds
   
    public void replaceFork()
    {
@@ -18,15 +20,15 @@ public class Fork {
    }
     
    @SuppressWarnings("empty-statement")
-   public boolean grabFork (Philosopher using) throws InterruptedException
+   public boolean grabFork () throws InterruptedException
    {
       int timesRun = 0;      
-      while (sema <= 0 && timesRun <= 300)
+      while (sema <= 0 && timesRun <= MAX_TRIES)
       {
-        Thread.sleep(10);
+        Thread.sleep(SLEEP_TIME);
         ++timesRun;
       }
-      if (timesRun == 300)
+      if (timesRun >= MAX_TRIES)
          return false;
       else
          --sema;
