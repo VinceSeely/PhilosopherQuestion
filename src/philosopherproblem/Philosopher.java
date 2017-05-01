@@ -6,6 +6,7 @@
 package philosopherproblem;
 
 import java.util.Random;
+import java.util.Timer;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Philosopher extends Thread
    private static final int MIN_TIME = 10;
    private Random rand = new Random();
 
+
    /**
    Parameterized Constructor: Sets leftFork to left, rightFork to right, and
    id to iden.
@@ -36,12 +38,13 @@ public class Philosopher extends Thread
       rightFork = right;
       id = iden;
    }
+   
    @Override
    public void run()
    {
       boolean hasForks = false;
       //start/init timer
-      while (runTime != 0)
+      while (true)
       {
          System.out.println (id + ": THINKING");
          thinking();
@@ -127,6 +130,6 @@ public class Philosopher extends Thread
    {
       return "Philosopher " + id + " ate for: " + eatTime +
          "milliseconds \nPhilosopher " + id + " thought for: " 
-         + thinkTime + "milliseconds"; 
+         + thinkTime + " milliseconds"; 
    }
 }
